@@ -5,7 +5,7 @@ export const regController = async (req, res, next) => {
     // We can also remove this try-catch block bcuz we have already added a library for this: express-async-errors
     try{
         // Destructuring the request body
-        const { name, email, password } = req.body;
+        const { name, email, password, location } = req.body;
 
         //Validation 
         // if(!name) return res.status(400).send({ success: false, message: "Name not provided!"});
@@ -26,7 +26,7 @@ export const regController = async (req, res, next) => {
         }
 
         // Creating the user
-        const user = await userModel.create({name, email, password})
+        const user = await userModel.create({name, email, password, location})
 
         // Creating token
         const token = user.createJWT();
